@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
             variantColor: Colors.black38,
             intensity: 0.5,
           ),
-          themeMode: ThemeMode.light,
+          themeMode: ThemeMode.dark,
           child: MaterialApp(
             home: NeumorphicBackground(
               child: HomePage(),

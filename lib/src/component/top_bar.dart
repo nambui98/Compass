@@ -1,45 +1,76 @@
+import 'package:compass_1/src/icon_app/icon_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'back_button.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final List<Widget> actions;
+  final List<Widget>? actions;
 
   static const double kToolbarHeight = 110.0;
 
-  const TopBar({this.title = "", required this.actions});
+  const TopBar({this.title = "", this.actions});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 18.0),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Align(alignment: Alignment.centerLeft, child: NeumorphicBack()),
-          Center(
-            child: Text(
-              this.title,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w800,
-                color: NeumorphicTheme.isUsingDark(context)
-                    ? Colors.white70
-                    : Colors.black87,
-              ),
+    return Stack(
+      alignment: Alignment.center,
+      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        // Align(alignment: Alignment.centerLeft, child: NeumorphicBack()),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: InkWell(
+            focusColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            // overlayColor: Colors.transparent,
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                SvgPicture.asset(
+                  IconApp.back,
+                  color: Color(0xff39414A),
+                  width: 40,
+                ),
+                Positioned(
+                  left: 0,
+                  child: Icon(
+                    Icons.chevron_left_outlined,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                )
+              ],
             ),
           ),
-          Align(
-              alignment: Alignment.centerRight,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: actions ?? [],
-              )),
-        ],
-      ),
+        ),
+        Center(
+          child: Text(
+            this.title,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w800,
+              color: NeumorphicTheme.isUsingDark(context)
+                  ? Colors.white
+                  : const Color(0xff333333),
+            ),
+          ),
+        ),
+        Align(
+            alignment: Alignment.centerRight,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: actions ?? [],
+            )),
+      ],
     );
   }
 
