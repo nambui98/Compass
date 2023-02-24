@@ -34,21 +34,30 @@ class ComPassPageState extends State<ComPassPage> {
     });
   }
 
-  Widget _buildPermissionSheet() {
+  Widget _buildPermissionSheet(bool isDark) {
     return SafeArea(
       child: Container(
         alignment: Alignment.center,
         // color: Colors.amber,
         // color: const Color(0xffF3F8FF),
         child: NeumorphicButton(
-          style: const NeumorphicStyle(
+          style: NeumorphicStyle(
               depth: 8,
               intensity: .9,
-              shadowDarkColor: Color(0xffbbd0ed),
-              shadowLightColor: Colors.white,
-              color: Color(0xfff3f8ff),
+              shadowDarkColor: isDark
+                  ? Colors.black.withOpacity(.6)
+                  : const Color(0xffbbd0ed),
+              shadowLightColor:
+                  isDark ? Colors.white.withOpacity(.25) : Colors.white,
+              color: isDark ? const Color(0xff272727) : const Color(0xffF3F8FF),
               shape: NeumorphicShape.flat),
-          child: const Text('Request Permissions'),
+          child: Text(
+            'Request Permissions',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: isDark ? Colors.white : const Color(0xff47515c),
+            ),
+          ),
           onPressed: () {
             Permission.locationWhenInUse.request().then((ignored) {
               _fetchPermissionStatus();
@@ -69,16 +78,17 @@ class ComPassPageState extends State<ComPassPage> {
       body: Builder(
         builder: (context) {
           if (!_hasPermissions) {
-            return _buildPermissionSheet();
+            return _buildPermissionSheet(isDark);
           } else {
             return SafeArea(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(top: 9.0),
                     child: TopBar(
                       title: "COMPASS",
+                      showBack: false,
                       actions: [
                         InkWell(
                           onTap: () {
@@ -97,7 +107,10 @@ class ComPassPageState extends State<ComPassPage> {
                       ],
                     ),
                   ),
-                  Flexible(child: NeumorphicClock()),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Expanded(child: NeumorphicClock()),
                 ],
               ),
             );
@@ -162,6 +175,7 @@ class NeumorphicClock extends StatelessWidget {
             );
           }
           return Stack(
+            // alignment: Alignment.center,
             clipBehavior: Clip.none,
             children: [
               Positioned(

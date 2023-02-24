@@ -52,12 +52,12 @@ class ColorSelector extends StatelessWidget {
               ),
             ),
             actions: <Widget>[
-              FlatButton(
-                child: const Text('Close'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
+              // FlatButton(
+              //   child: const Text('Close'),
+              //   onPressed: () {
+              //     Navigator.of(context).pop();
+              //   },
+              // ),
             ],
           );
         });

@@ -31,23 +31,6 @@ class MyApp extends StatelessWidget {
     return AnimatedBuilder(
       animation: settingsController,
       builder: (BuildContext context, Widget? child) {
-        // NeumorphicApp(
-        //   debugShowCheckedModeBanner: false,
-        //   title: 'Flutter Demo',
-        //   themeMode: ThemeMode.light,
-        //   theme: NeumorphicThemeData(
-        //     baseColor: Color(0xFFFFFFFF),
-        //     lightSource: LightSource.topLeft,
-        //     depth: 10,
-        //   ),
-        //   darkTheme: NeumorphicThemeData(
-        //     baseColor: Color(0xFF3E3E3E),
-        //     lightSource: LightSource.topLeft,
-        //     depth: 6,
-        //   ),
-        //   home: SampleItemListView(),
-        // );
-
         return NeumorphicTheme(
           theme: const NeumorphicThemeData(
               defaultTextColor: Color(0xFF303E57),
@@ -69,7 +52,7 @@ class MyApp extends StatelessWidget {
           themeMode: ThemeMode.dark,
           child: MaterialApp(
             home: NeumorphicBackground(
-              child: HomePage(),
+              child: ComPassPage(),
             ),
             onGenerateRoute: (RouteSettings routeSettings) {
               return MaterialPageRoute<void>(
