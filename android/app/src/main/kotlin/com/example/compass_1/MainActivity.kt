@@ -1,4 +1,4 @@
-package com.example.compass_1
+package compass.nambv
 
 import io.flutter.embedding.android.FlutterActivity
 
