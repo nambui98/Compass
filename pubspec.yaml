@@ -12,13 +12,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_colorpicker: ^1.0.3
-  flutter_compass: ^0.7.0
   flutter_localizations:
     sdk: flutter
   flutter_neumorphic: ^3.2.0
   flutter_svg: ^1.1.6
-  permission_handler: ^10.2.0
+  sensors_plus: ^2.0.2
 
 dev_dependencies:
   flutter_test:
